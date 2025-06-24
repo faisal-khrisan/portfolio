@@ -1,0 +1,316 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* General Body Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0a192f;
+    color: #ccd6f6;
+    line-height: 1.6;
+    cursor: none; /* Hide default cursor */
+}
+
+/* Custom Animated Cursor */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #64ffda, #4fd1c7);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    box-shadow:
+        0 0 10px rgba(100, 255, 218, 0.5),
+        0 0 20px rgba(100, 255, 218, 0.3),
+        0 0 30px rgba(100, 255, 218, 0.1);
+}
+
+.custom-cursor::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background: rgba(100, 255, 218, 0.1);
+    border: 2px solid rgba(100, 255, 218, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: pulse 2s infinite;
+}
+
+.custom-cursor.hover {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #64ffda, #4fd1c7);
+    box-shadow:
+        0 0 20px rgba(100, 255, 218, 0.8),
+        0 0 40px rgba(100, 255, 218, 0.6),
+        0 0 60px rgba(100, 255, 218, 0.4);
+}
+
+.custom-cursor.click {
+    width: 30px;
+    height: 30px;
+    animation: clickPulse 0.3s ease-out;
+}
+
+/* Cursor Animations */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.4;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes clickPulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Cursor Trail */
+.cursor-trail {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: rgba(100, 255, 218, 0.6);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    animation: trailFade 0.5s ease-out forwards;
+}
+
+@keyframes trailFade {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+}
+
+/* Hide cursor on interactive elements */
+a, button, [role="button"], input, textarea {
+    cursor: none !important;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Custom Properties */
+:root {
+    --accent-color: #64ffda;
+    --bg-dark: #0a192f;
+    --bg-light: #112240;
+    --text-primary: #ccd6f6;
+    --text-secondary: #8892b0;
+}
+
+/* Glassmorphism Effect */
+.glass-effect {
+    background: rgba(17, 34, 64, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* Accent Color Utility */
+.accent-color {
+    color: var(--accent-color);
+}
+
+/* Navigation Styles */
+.nav-link {
+    @apply inline-block py-2 px-4 text-gray-300 hover:text-teal-300 no-underline transition-colors duration-300;
+}
+
+/* Project Card Styles */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(17, 34, 64, 0.6);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    border-color: rgba(100, 255, 218, 0.3);
+}
+
+/* Skills Tab Styles */
+.tab-button {
+    @apply px-4 py-3 rounded-md whitespace-nowrap font-medium text-gray-400 border-2 border-transparent transition-all duration-300;
+    background: rgba(17, 34, 64, 0.4);
+}
+
+.tab-button.active {
+    @apply text-teal-300 border-teal-300;
+    background: rgba(100, 255, 218, 0.1);
+}
+
+.tab-button:hover {
+    @apply text-teal-300;
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.tab-panel {
+    @apply p-4;
+}
+
+.skills-list {
+    @apply flex flex-wrap gap-3;
+}
+
+.skill-pill {
+    @apply bg-gray-800 text-teal-300 py-2 px-4 rounded-full text-sm shadow-md transition-all duration-200 hover:scale-105;
+    background: rgba(17, 34, 64, 0.8);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+}
+
+.skill-pill:hover {
+    background: rgba(100, 255, 218, 0.1);
+    border-color: rgba(100, 255, 218, 0.4);
+}
+
+/* Timeline Styles */
+.timeline-item {
+    @apply relative pl-8 pb-8;
+}
+
+.timeline-item::before {
+    content: '';
+    @apply absolute left-0 top-2 w-3 h-3 bg-teal-400 rounded-full;
+}
+
+.timeline-item::after {
+    content: '';
+    @apply absolute left-1.5 top-5 w-0.5 h-full bg-gray-600;
+}
+
+.timeline-item:last-child::after {
+    display: none;
+}
+
+/* Social Media Links */
+.social-link {
+    @apply text-gray-400 hover:text-teal-300 transition-colors duration-300 transform hover:scale-110;
+}
+
+/* Animation for Fade-in Effect on Scroll */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Chat Styles */
+.chat-bubble-user {
+    background: linear-gradient(135deg, #64ffda, #4fd1c7);
+    color: #0a192f;
+}
+
+.chat-bubble-ai {
+    background: rgba(17, 34, 64, 0.8);
+    color: #ccd6f6;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+/* Typing Indicator */
+.typing-indicator {
+    @apply flex space-x-1;
+}
+
+.typing-indicator span {
+    @apply inline-block w-2 h-2 rounded-full bg-teal-400;
+    animation: bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.5;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a192f;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #64ffda;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4fd1c7;
+}
+
+/* Button Styles */
+.btn-primary {
+    @apply bg-teal-500 text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-teal-400 transition-all duration-300 transform hover:scale-105;
+    box-shadow: 0 4px 15px rgba(100, 255, 218, 0.3);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(100, 255, 218, 0.4);
+}
+
+/* Section Padding */
+.section-padding {
+    @apply py-20 px-6;
+}
+
+/* Container */
+.container-custom {
+    @apply container mx-auto max-w-6xl;
+}
